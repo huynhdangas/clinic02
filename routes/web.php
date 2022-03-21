@@ -23,7 +23,8 @@ Route::post('/book/appointment', [App\Http\Controllers\FrontendController::class
 
 Route::get('/my-booking', [App\Http\Controllers\FrontendController::class, 'myBookings'])->name('my.booking')->middleware('auth');
 
-
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index']);
+Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store']);
 
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
