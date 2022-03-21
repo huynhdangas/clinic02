@@ -19,12 +19,17 @@ Route::get('/', [App\Http\Controllers\FrontendController::class, 'index']);
 // patient appointment
 Route::get('/new-appointment/{doctorId}/{date}', [App\Http\Controllers\FrontendController::class, 'show'])->name('create.appointment');
 
-Route::post('/book/appointment', [App\Http\Controllers\FrontendController::class, 'store'])->name('booking.appointment')->middleware('auth');
 
-Route::get('/my-booking', [App\Http\Controllers\FrontendController::class, 'myBookings'])->name('my.booking')->middleware('auth');
+Route::group(['middleware' => ['auth', 'patient']], function () {
+    Route::post('/book/appointment', [App\Http\Controllers\FrontendController::class, 'store'])->name('booking.appointment');
+    Route::get('/my-booking', [App\Http\Controllers\FrontendController::class, 'myBookings'])->name('my.booking');
+    Route::get('/user-profile', [App\Http\Controllers\ProfileController::class, 'index']);
+    Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('profile.store');
+    Route::post('/profile-pic', [App\Http\Controllers\ProfileController::class, 'profilePic'])->name('profile.pic');
+            
+});
 
-Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index']);
-Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store']);
+
 
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
