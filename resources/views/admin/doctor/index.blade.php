@@ -40,7 +40,7 @@
     @endif
         <div class="card">
             <div class="card-header"><h3>Doctors</h3></div>
-            <div class="card-body" style="margin: auto; width: 90%;">
+            <div class="card-body">
                 <table id="data_table" class="table">
                     <thead>
                         <tr>
