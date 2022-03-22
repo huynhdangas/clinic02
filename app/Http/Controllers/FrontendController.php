@@ -12,7 +12,7 @@ use App\Mail\AppointmentMail;
 class FrontendController extends Controller
 {
     public function index() {
-        // date_default_timezone_set('Asia/Ho_Chi_Minh');
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
         if(request('date')) {
             $doctors = $this->findDoctorsBasedOnDate(request('date'));
             return view('welcome', compact('doctors'));
@@ -37,7 +37,7 @@ class FrontendController extends Controller
     }
 
     public function store(Request $request) {
-        // date_default_timezone_set('Asia/Ho_Chi_Minh');
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
 
         $request->validate(['time' => 'required']);
 

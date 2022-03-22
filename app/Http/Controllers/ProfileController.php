@@ -12,7 +12,6 @@ class ProfileController extends Controller
     }
 
     public function store(Request $request) {
-        dd($request->all());
         $this->validate($request, [
             'name' => 'required',
             'gender' => 'required',
@@ -24,6 +23,7 @@ class ProfileController extends Controller
         'address' => $request->address
         ]);
         return redirect()->back()->with('message', 'Profile Updated');
+        
     }
 
     public function profilePic(Request $request) {

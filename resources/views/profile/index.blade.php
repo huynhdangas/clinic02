@@ -28,7 +28,8 @@
                 <div class="card-header"><h2>Form Update Profile</h2></div>
 
                 <div class="card-body">
-                    <form action="{{route('profile.store')}}" method="post">@csrf
+                <form action="{{route('profile.store')}}" method="post" enctype="multipart/form-data">@csrf
+
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="name"  value="{{auth()->user()->name}}" class="form-control @error('name') is-invalid @enderror">

@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth', 'patient']], function () {
     Route::post('/book/appointment', [App\Http\Controllers\FrontendController::class, 'store'])->name('booking.appointment');
     Route::get('/my-booking', [App\Http\Controllers\FrontendController::class, 'myBookings'])->name('my.booking');
     Route::get('/user-profile', [App\Http\Controllers\ProfileController::class, 'index']);
-    Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('profile.store');
+    Route::post('/user-profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('profile.store');
     Route::post('/profile-pic', [App\Http\Controllers\ProfileController::class, 'profilePic'])->name('profile.pic');
             
 });
@@ -42,7 +42,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::resource('doctor', 'DoctorController');
-
+    Route::get('/patients', [App\Http\Controllers\PatientlistController::class, 'index'])->name('patient');
+    Route::get('/patients/all', [App\Http\Controllers\PatientlistController::class, 'allTimeAppointment'])->name('all.appointment');
+    Route::get('/status/update/{id}', [App\Http\Controllers\PatientlistController::class, 'toggleStatus'])->name('update.status');
 });
 
 // doctor
