@@ -118,6 +118,10 @@
         <script src="{{asset('template/dist/js/theme.min.js')}}"></script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 
+        <!-- js vue -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+
+
         <!-- them vao -->
         <script type="text/javascript">
             $(document).ready(function() {

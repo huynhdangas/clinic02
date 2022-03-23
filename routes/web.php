@@ -52,6 +52,8 @@ Route::group(['middleware' => ['auth', 'doctor']], function () {
     Route::resource('appointment', 'AppointmentController');
     Route::post('/appointment/check', [App\Http\Controllers\AppointmentController::class, 'check'])->name('appointment.check');
     Route::post('/appointment/update', [App\Http\Controllers\AppointmentController::class, 'updateTime'])->name('update');
+    Route::get('/patients-today', [App\Http\Controllers\PrescriptionController::class, 'index']);
+    Route::post('/prescription', [App\Http\Controllers\PrescriptionController::class, 'store'])->name('prescription');
 });
 
 // nurse

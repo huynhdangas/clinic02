@@ -32,6 +32,8 @@
                                 </div>
                                 @endif
 
+                                
+
                                 @if(auth()->check()&&auth()->user()->role->name === 'doctor')
                                 <div class="nav-item has-sub">
                                     <a href="javascript:void(0)"><i class="ik ik-calendar"></i><span>Appointment</span> <span class="badge badge-danger"></span></a>
@@ -51,6 +53,14 @@
                                     </div>
                                 </div>
                                 @endif
+
+                                <div class="nav-item active">
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="ik ik-power dropdown-icon"></i><span>Logout</span></a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
                                 
                             </nav>
                         </div>

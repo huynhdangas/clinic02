@@ -160,7 +160,7 @@
     <style type="text/css">
         body {
             background-color: #fff;
-            font-weight: 600;
+            
         }
         .ui-corner-all {
             background: #007bff;
