@@ -198,15 +198,19 @@
         label.btn input{
             opacity: 0; 
             position: absolute;
+            
         }
         label.btn span{
             text-align: center; 
             padding: 6px 12px; 
             display: block;
-            min-width: 80px;
+            border-radius: 5px;
+            height:100%;
+            
+            
         }
         label.btn input:checked+span{
-            background-color: #007bff; 
+            background-color: #28a745; 
             color: #fff;
         }
 

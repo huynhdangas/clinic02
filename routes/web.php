@@ -52,13 +52,18 @@ Route::group(['middleware' => ['auth', 'doctor']], function () {
     Route::resource('appointment', 'AppointmentController');
     Route::post('/appointment/check', [App\Http\Controllers\AppointmentController::class, 'check'])->name('appointment.check');
     Route::post('/appointment/update', [App\Http\Controllers\AppointmentController::class, 'updateTime'])->name('update');
-    Route::get('/patients-today', [App\Http\Controllers\PrescriptionController::class, 'index']);
+    Route::get('/patients-today', [App\Http\Controllers\PrescriptionController::class, 'index'])->name('patients.today');
     Route::post('/prescription', [App\Http\Controllers\PrescriptionController::class, 'store'])->name('prescription');
+    Route::get('/prescription/{userId}/{date}', [App\Http\Controllers\PrescriptionController::class, 'show'])->name('prescription.show');
 });
 
 // nurse
 Route::group(['middleware' => ['auth', 'nurse']], function () {
-            
+    // dat lich gium khach
+    // check lich kham
+    Route::get('/patients', [App\Http\Controllers\PatientlistController::class, 'index'])->name('patient');
+    Route::get('/patients/all', [App\Http\Controllers\PatientlistController::class, 'allTimeAppointment'])->name('all.appointment');
+    Route::get('/status/update/{id}', [App\Http\Controllers\PatientlistController::class, 'toggleStatus'])->name('update.status');
 });
 
 // testdoctor

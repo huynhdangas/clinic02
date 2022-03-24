@@ -36,7 +36,7 @@
                 </div>
             @endif
 
-                <div class="card-header">Appointment ({{$bookings->count()}})</div>
+                <div class="card-header"><h3>Appointment ({{$bookings->count()}})</h3></div>
 
                
 
@@ -61,7 +61,7 @@
                             @forelse ($bookings as $key => $booking)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td><img src="/profile/{{$booking->user->image}}" width="50" style="border-radius: 50%;" alt=""></td>
+                                <td><img src="/profile/{{$booking->user->image}}" width="50" height="50" style="border-radius: 50%;" alt=""></td>
                                 <td>{{$booking->date}}</td>
                                 <td>{{$booking->user->name}}</td>
                                 <td>{{$booking->user->email}}</td>
@@ -77,9 +77,13 @@
                                 </td>
                                 <td>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                    @if(!App\Models\Prescription::where('date',date('Y-m-d'))->where('doctor_id',auth()->user()->id)->where('user_id',$booking->user->id)->exists())
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$booking->user_id}}">
                                         Write Prescription
                                     </button>
+                                    @else
+                                    <a href="{{route('prescription.show',[$booking->user_id,$booking->date])}}" class="btn btn-secondary">View Prescription</a>
+                                    @endif
                                 </td>
                             </tr>
                             @empty
@@ -92,62 +96,7 @@
         
     </div>
 
-@if(count($bookings)>0)
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-      <form method="post" action="{{route('prescription')}}">@csrf
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Prescription</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="app">
+    @include('prescription.form')
 
-            <input type="hidden" name="user_id" value="{{$booking->user_id}}"> 
-            <input type="hidden" name="doctor_id" value="{{$booking->doctor_id}}"> 
-            <input type="hidden" name="date" value="{{$booking->date}}"> 
-            <div class="form-group">
-                <label for="">Disease</label>
-                <input type="text" name="name_of_disease" class="form-control" required="">
-            </div>
-            <div class="form-group">
-                <label for="">Symptoms</label>
-                <textarea name="symptoms" class="form-control" required="">
-
-                </textarea>
-            </div>
-            <div class="form-group">
-                <label for="">Medicine</label>
-                <add-btn></add-btn>
-            </div>
-            <div class="form-group">
-                <label for="">Procedure to use medicine</label>
-                <textarea name="procedure_to_use_medicine" class="form-control" required="">
-
-                </textarea>
-            </div>
-            <div class="form-group">
-                <label for="">Feedback</label>
-                <textarea name="feedback" class="form-control" required="">
-
-                </textarea>
-            </div>
-            <div class="form-group">
-                <label for="">Signature</label>
-                <input type="text" name="signature" class="form-control" required="">
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-    </form>
-  </div>
-</div>
-@endif
 @endsection

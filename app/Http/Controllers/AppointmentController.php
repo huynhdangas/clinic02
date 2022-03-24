@@ -20,6 +20,11 @@ class AppointmentController extends Controller
         return view('admin.appointment.index', compact('myappointments'));
     }
 
+    public function checkDoctorAppointment() {
+        $myappointments = Appointment::all();
+        return view('admin.appointment.index', compact('myappointments'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -107,6 +112,18 @@ class AppointmentController extends Controller
         $appointment = Appointment::where('date', $date)->where('user_id', auth()->user()->id)->first();
         if(!$appointment) {
             return redirect()->to('/appointment')->with('errmessage','Appointment time not available for this date.');
+        }
+        $appointmentId = $appointment->id;
+        $times = Time::where('appointment_id', $appointmentId)->get();
+        
+        return view('admin.appointment.index', compact('times', 'appointmentId', 'date'));
+    }
+
+    public function checkByAdmin(Request $request) {
+        $date = $request->date;
+        $appointment = Appointment::where('date', $date)->first();
+        if(!$appointment) {
+            return redirect()->to('/doctor-appointment')->with('errmessage','Appointment time not available for this date.');
         }
         $appointmentId = $appointment->id;
         $times = Time::where('appointment_id', $appointmentId)->get();
