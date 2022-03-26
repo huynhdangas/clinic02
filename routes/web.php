@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/patients', [App\Http\Controllers\PatientlistController::class, 'index'])->name('patient');
     Route::get('/patients/all', [App\Http\Controllers\PatientlistController::class, 'allTimeAppointment'])->name('all.appointment');
     Route::get('/status/update/{id}', [App\Http\Controllers\PatientlistController::class, 'toggleStatus'])->name('update.status');
+    Route::resource('department', 'DepartmentController');
+
 });
 
 // doctor

@@ -121,10 +121,10 @@
                     <div class="form-group">
                         <label>Specialist</label>
                         <select name="department" class="form-control" id="">
-                            
-                            @foreach(['Cadiologist', 'Neurologist', 'Dentist'] as $department)
-                                <option value="{{$department}}" @if($user->department == $department) selected @endif >{{$department}}</option>
-                            @endforeach 
+
+                            @foreach(App\Models\Department::all() as $department)
+                                <option value="{{$department->department}}" @if($user->department == $department->department) selected @endif >{{$department->department}}</option>
+                            @endforeach
                         </select>
 
                             @error('department')
