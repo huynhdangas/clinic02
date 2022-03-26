@@ -26,7 +26,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(d,index) in doctors">
+                        <tr v-for="(d,index) in doctors" :key="index">
                             <td>{{index+1}}</td>
                             <td>
                                 <img :src="'/images/'+d.doctor.image" width="100" style="border-radius: 50%;">

@@ -46,10 +46,10 @@
 
                                 @if(auth()->check()&&auth()->user()->role->name === 'doctor')
                                 <div class="nav-item has-sub">
-                                    <a href="javascript:void(0)"><i class="ik ik-calendar"></i><span>Patients</span> <span class="badge badge-danger"></span></a>
+                                    <a href="javascript:void(0)"><i class="ik ik-users"></i><span>Patients</span> <span class="badge badge-danger"></span></a>
                                     <div class="submenu-content">
                                         <a href="{{ route('patients.today') }}" class="menu-item">Patients today</a>
-                                        <a href="{{ route('appointment.index') }}" class="menu-item">All Patient</a>
+                                        <a href="{{ route('prescribed.patients') }}" class="menu-item">All Patient</a>
                                     </div>
                                 </div>
                                 @endif

@@ -28,6 +28,11 @@ class PrescriptionController extends Controller
         return view('prescription.show', compact('prescription'));
     }
 
+    //get all patients from prescription table
+    public function patientsFromPrescription() {
+        $patients = Prescription::get();
+        return view('prescription.all', compact('patients'));
+    }
 
 
 }

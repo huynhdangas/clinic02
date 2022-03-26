@@ -82,8 +82,10 @@
                                 <a class="nav-link" style="color: #fff;" href="{{ route('my.booking') }}">{{ __('My Booking') }}</a>
                             </li>
 
+
+
                             <li class="nav-item">
-                                <a class="nav-link" style="color: #fff;" href="">{{ __('LS kham benh') }}</a>
+                                <a class="nav-link" style="color: #fff;" href="{{ route('my.prescription') }}">{{ __('My Prescriptions') }}</a>
                             </li>
                         @endif    
                         
@@ -177,6 +179,9 @@
         }
         .table-head {
             height:50px;
+        }
+        .table td{
+            
         }
         .table-head tr,
         .table-head th {

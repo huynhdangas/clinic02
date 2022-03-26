@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Notifications') }}</div>
+                <div class="card-header"><h2>Notifications</h2></div>
 
                 <div class="card-body">
-                    You are login! Welcome to DangSang Clinic.
+                    You are logged in as {{Auth()->user()->name}}! Welcome to DangSang Clinic.
                 </div>
             </div>
         </div>

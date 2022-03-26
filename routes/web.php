@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth', 'patient']], function () {
     Route::get('/user-profile', [App\Http\Controllers\ProfileController::class, 'index']);
     Route::post('/user-profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('profile.store');
     Route::post('/profile-pic', [App\Http\Controllers\ProfileController::class, 'profilePic'])->name('profile.pic');
+    Route::get('/my-prescription', [App\Http\Controllers\FrontendController::class, 'myPrescription'])->name('my.prescription');
+
             
 });
 
@@ -55,6 +57,7 @@ Route::group(['middleware' => ['auth', 'doctor']], function () {
     Route::get('/patients-today', [App\Http\Controllers\PrescriptionController::class, 'index'])->name('patients.today');
     Route::post('/prescription', [App\Http\Controllers\PrescriptionController::class, 'store'])->name('prescription');
     Route::get('/prescription/{userId}/{date}', [App\Http\Controllers\PrescriptionController::class, 'show'])->name('prescription.show');
+    Route::get('/prescribed-patients', [App\Http\Controllers\PrescriptionController::class, 'patientsFromPrescription'])->name('prescribed.patients');   
 });
 
 // nurse
