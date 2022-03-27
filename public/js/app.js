@@ -5377,10 +5377,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      inputs: [{}]
+      inputs: [{}],
+      medicines: []
     };
   },
   methods: {
@@ -5392,6 +5399,13 @@ __webpack_require__.r(__webpack_exports__);
     remove: function remove(index) {
       this.inputs.splice(index, 1);
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/api/medicine/all').then(function (response) {
+      _this.medicines = response.data;
+    });
   }
 });
 
@@ -50439,10 +50453,18 @@ var render = function () {
     "div",
     _vm._l(_vm.inputs, function (input, index) {
       return _c("div", { key: index, staticClass: "form-group" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "medicine[]" },
-        }),
+        _c(
+          "select",
+          { staticClass: "form-control", attrs: { name: "medicine[]" } },
+          [
+            _c("option", { attrs: { value: "" } }, [_vm._v("Select Medicine")]),
+            _vm._v(" "),
+            _vm._l(_vm.medicines, function (m, index) {
+              return _c("option", { key: index }, [_vm._v(_vm._s(m.medicine))])
+            }),
+          ],
+          2
+        ),
         _vm._v(" "),
         _c("span", [
           _c(
@@ -50617,7 +50639,7 @@ var render = function () {
               "tbody",
               [
                 _vm._l(_vm.doctors, function (d, index) {
-                  return _c("tr", [
+                  return _c("tr", { key: index }, [
                     _c("td", [_vm._v(_vm._s(index + 1))]),
                     _vm._v(" "),
                     _c("td", [

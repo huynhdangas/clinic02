@@ -22,5 +22,9 @@ Route::get('/doctors/today', [App\Http\Controllers\FrontendController::class, 'd
 Route::post('/finddoctors', [App\Http\Controllers\FrontendController::class, 'findDoctors']);
 
 
+Route::get('/medicine/all', [App\Http\Controllers\PrescriptionController::class, 'medicine']);
+
+
+
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Prescription;
+use App\Models\Medicine;
 
 class PrescriptionController extends Controller
 {
@@ -32,6 +33,11 @@ class PrescriptionController extends Controller
     public function patientsFromPrescription() {
         $patients = Prescription::get();
         return view('prescription.all', compact('patients'));
+    }
+
+    public function medicine(Request $request) {
+        $medicines = Medicine::all();
+        return $medicines;
     }
 
 

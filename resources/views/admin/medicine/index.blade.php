@@ -9,8 +9,8 @@
             <div class="page-header-title">
                 <i class="ik ik-inbox bg-blue"></i>
                 <div class="d-inline">
-                    <h5>Department</h5>
-                    <span>List Department</span>
+                    <h5>Medicine</h5>
+                    <span>List Medicine</span>
                 </div>
             </div>
         </div>
@@ -21,9 +21,9 @@
                         <a href="../index.html"><i class="ik ik-home"></i></a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="#">Departments</a>
+                        <a href="#">Medicines</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Index</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Medicine</li>
                 </ol>
             </nav>
         </div>
@@ -39,12 +39,12 @@
         </div>
     @endif
         <div class="card">
-            <div class="card-header"><h3>Department</h3></div>
+            <div class="card-header"><h3>Medicine</h3></div>
             <div class="card-body">
                 <table id="data_table" class="table">
                     <thead>
                         <tr>
-                            <th>Department</th>
+                            <th>Medicine</th>
                             
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
@@ -54,17 +54,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @if(count($departments)>0)
-                        @foreach($departments as $department)
+                    @if(count($medicines)>0)
+                        @foreach($medicines as $medicine)
                         <tr>
-                            <td>{{$department->department}}</td>
+                            <td>{{$medicine->medicine}}</td>
                             
                             <td>
                                 <div class="table-actions">
                                     
-                                    <a href="{{route('department.edit', [$department->id])}}"><i class="ik ik-edit-2"></i></a>
+                                    <a href="{{route('medicine.edit', [$medicine->id])}}"><i class="ik ik-edit-2"></i></a>
                                     
-                                    <form action="{{route('department.destroy', [$department->id])}}" method="post">
+                                    <form action="{{route('medicine.destroy', [$medicine->id])}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"><i class="ik ik-trash-2"></i></button>
@@ -83,7 +83,7 @@
 
 
                     @else 
-                    <td>No departments to display</td>
+                    <td>No medicines to display</td>
                     @endif
                    
                         

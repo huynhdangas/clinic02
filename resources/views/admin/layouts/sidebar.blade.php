@@ -86,6 +86,16 @@
                                 </div>
                                 @endif
 
+                                @if(auth()->check()&&auth()->user()->role->name === 'nurse')
+                                <div class="nav-item has-sub">
+                                    <a href="javascript:void(0)"><i class="ik ik-umbrella"></i><span>Medicine</span> <span class="badge badge-danger"></span></a>
+                                    <div class="submenu-content">
+                                        <a href="{{ route('medicine.create') }}" class="menu-item">Create</a>
+                                        <a href="{{ route('medicine.index') }}" class="menu-item">View</a>
+                                    </div>
+                                </div>
+                                @endif
+
                                 <div class="nav-item active">
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="ik ik-power dropdown-icon"></i><span>Logout</span></a>
